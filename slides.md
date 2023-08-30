@@ -13,19 +13,21 @@ drawings:
   persist: false
 transition: slide-left
 title: Welcome to Slidev
+monaco: 'dev'
+
 ---
 
-# Welcome to Slidev
+# Mini Bundler
 
-Presentation slides for developers
+最小的打包器
 
-<div class="pt-12">
+<!-- <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
     Press Space for next page <carbon:arrow-right class="inline"/>
   </span>
-</div>
+</div> -->
 
-<div class="abs-br m-6 flex gap-2">
+<!-- <div class="abs-br m-6 flex gap-2">
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon:edit />
   </button>
@@ -33,34 +35,42 @@ Presentation slides for developers
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
-</div>
+</div> -->
 
 
 
 ---
 transition: fade-out
+title: 什么是 Bundler
+
 ---
 
-# What is Slidev?
+# 什么是 Bundler
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+bundlers let us write  modules  that work in  the browsers
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
+- **CommonJS** - CJS 
 
-<br>
-<br>
+- **ECMA Script Module** - esm  js 标准模块
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+- **Universal Module Definition** - 通用模块定义 [umd](https://github.com/umdjs/umd)
+
+
+
+
+
+
+
 
 <!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
+
+使用哪种模块 
+需要 衡量
+
+esm  默认支持
+
+umd  通用 为什么不直接 只提供 umd 包
+
 -->
 
 <style>
@@ -78,45 +88,104 @@ h1 {
 <!--
 Here is another comment .
 -->
+---
+transition: fade-out
+title: 模块示例
+---
+
+
+<div> 
+esm
+
+```ts 
+import _ from 'lodash';
+
+// some code...
+
+export default value
+```
+</div>
+
+<br>
+<br>
+
+<div>
+cjs
+
+```ts 
+const _ = require('lodash');
+
+// some code...
+
+module.exports = someValue
+```
+
+</div>
+
 
 ---
-layout: default
+title: umd
+---
+<div>
+umd
+
+```ts 
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.mathLibrary = factory();
+  }
+}(typeof self !== 'undefined' ? self : this, function () {
+  // 实际的库代码
+  function add(a, b) {
+    return a + b;
+  }
+
+  return {
+    add: add
+  };
+}));
+
+```
+
+</div>
 ---
 
-# Table of contents
+## 为什么需要 Bundler
 
-```
-<Toc minDepth="1" maxDepth="5"></Toc>
-```
+<br>
 
-<Toc></Toc>
+- Reducing HTTP requests. 减少 httpRequest 
+
+A single package in node_modules may consist of hundreds of files, and large applications may have dozens of such dependencies. Loading each of these files with a separate HTTP request becomes untenable very quickly, so bundlers are used to convert our application source code into a smaller number of self-contained "bundles" that can be loaded with a single request.
+
+- Code transforms.  代码转换
+
+Modern apps are commonly built with languages or tools like TypeScript, JSX, and CSS modules, all of which must be converted into plain JavaScript and CSS before they can be consumed by a browser. The bundler is the natural place to configure these transformations.
+
+- Framework features.  框架特性
+
+Frameworks rely on bundler plugins & code transformations to implement common patterns like file-system routing, client-server code co-location (think getServerSideProps or Remix loaders), and server components.
+
 
 ---
 transition: slide-up
+layout: center
 
-level: 2
+
 ---
 
-# Navigation
+# Let's Code
 
-Hover on the bottom-left corner to see the navigation's controls panel
+<!-- 
+  TODO: 这里关于代码的文件
 
-### Keyboard Shortcuts
+ -->
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
 
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
 
 ---
 layout: image-right
@@ -144,7 +213,7 @@ function updateUser(id: number, update: User) {
 
 <arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
 
-<!-- [^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting) -->
+
 
 <style>
 .footnotes-sep {
