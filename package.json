@@ -10,5 +10,8 @@
     "@slidev/cli": "^0.42.11",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest"
+  },
+  "volta": {
+    "node": "14.21.3"
   }
 }

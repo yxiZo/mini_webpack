@@ -1,9 +1,9 @@
 ---
-theme: seriph
+theme: default
 background: https://source.unsplash.com/collection/94734566/1920x1080
 class: text-center
-highlighter: shiki
-lineNumbers: false
+highlighter: Prism
+lineNumbers: true
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -35,9 +35,7 @@ Presentation slides for developers
   </a>
 </div>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+
 
 ---
 transition: fade-out
@@ -78,7 +76,7 @@ h1 {
 </style>
 
 <!--
-Here is another comment.
+Here is another comment .
 -->
 
 ---
@@ -101,7 +99,7 @@ level: 2
 
 # Navigation
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+Hover on the bottom-left corner to see the navigation's controls panel
 
 ### Keyboard Shortcuts
 
@@ -146,7 +144,7 @@ function updateUser(id: number, update: User) {
 
 <arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
 
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
+<!-- [^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting) -->
 
 <style>
 .footnotes-sep {
@@ -164,7 +162,7 @@ function updateUser(id: number, update: User) {
 
 # Components
 
-<div grid="~ cols-2 gap-4">
+
 <div>
 
 You can use Vue components directly inside your slides.
@@ -181,16 +179,7 @@ We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that
 Check out [the guides](https://sli.dev/builtin/components.html) for more.
 
 </div>
-<div>
 
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
 
 <!--
 Presenter note with **bold**, *italic*, and ~~striked~~ text.
@@ -306,7 +295,7 @@ const final = {
   :initial="{ x:35, y: 40, opacity: 0}"
   :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
 
-[Learn More](https://sli.dev/guide/animations.html#motion)
+<!-- [Learn More](https://sli.dev/guide/animations.html#motion) -->
 
 </div>
 
@@ -336,7 +325,7 @@ $$
 
 <br>
 
-[Learn more](https://sli.dev/guide/syntax#latex)
+
 
 ---
 
@@ -416,7 +405,7 @@ database "MySql" {
 
 </div>
 
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
+
 
 ---
 src: ./pages/multiple-entries.md
@@ -428,6 +417,6 @@ layout: center
 class: text-center
 ---
 
-# Learn More
+# Thank You !
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+<!-- [Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html) -->
