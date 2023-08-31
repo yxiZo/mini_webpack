@@ -82,7 +82,8 @@ const bundle = (graph) => {
         modules += `${mod.id}: [
             function(require, module, exports){
                 ${mod.code}
-            }
+            },
+            ${JSON.stringify(mod.mapping)}
         ]`
     })
 
