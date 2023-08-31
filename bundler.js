@@ -6,6 +6,8 @@ const parser = require('@babel/parser')
 // 遍历
 const traverse = require('@babel/traverse').default
 
+const babel = require('@babel/core')
+
 let ID = 0
 
 function createAsset(filename){
@@ -26,22 +28,30 @@ function createAsset(filename){
     // console.log(depends)
 
     const id  = ID++
+
+    const { code } = babel.transformFromAst(ast, null , {
+        // presets: ['env']  // babel 6.x
+        presets: ['@babel/preset-env'] // babel 7.x
+    })  
+
     return {
         id, 
         filename,
-        depends
+        depends,
+        code
     }
 }
 
-const createGraph = (entry) => {
+const createGraph = function(entry) {
 
     const mainAsset = createAsset(entry)
 
+    // 使用一个队列来 遍历
     const queue = [mainAsset]
 
 
     for(const asset of queue){
-        
+
         asset.mapping = {}
 
         const dirname = path.dirname(asset.filename)
@@ -53,6 +63,7 @@ const createGraph = (entry) => {
 
             asset.mapping[relativePath] = child.id
 
+            // 有依赖继续 push  ,直到队列结束
             queue.push(child)
         })
     }
@@ -62,5 +73,30 @@ const createGraph = (entry) => {
 
 const graph = createGraph('./example/entry.js')
 
+const bundle = (graph) => {
+    // 打包生成 bundle (可以运行的产物)
+    let modules = ''
 
-console.log(graph)
+    graph.forEach(mod => {
+        // 根据 babel env 处理的结果 传值
+        modules += `${mod.id}: [
+            function(require, module, exports){
+                ${mod.code}
+            }
+        ]`
+    })
+
+    const _result = `
+        (function() {
+
+
+        }) ({${modules}})
+    `;
+
+    return _result
+
+}
+
+const result = bundle(graph)
+
+console.log(result)
