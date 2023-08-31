@@ -1,6 +1,8 @@
 ---
 theme: default
-background: https://source.unsplash.com/collection/94734566/1920x1080
+# background: https://source.unsplash.com/collection/94734566/1920x1080
+
+background: https://images.unsplash.com/photo-1530819568329-97653eafbbfa?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=MnwxfDB8MXxyYW5kb218MHw5NDczNDU2Nnx8fHx8fHwxNjkzMzgxODgy&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1920
 class: text-center
 highlighter: Prism
 lineNumbers: true
@@ -42,7 +44,6 @@ monaco: 'dev'
 ---
 transition: fade-out
 title: 什么是 Bundler
-
 ---
 
 # 什么是 Bundler
@@ -86,13 +87,13 @@ h1 {
 </style>
 
 <!--
-Here is another comment .
+Here is another commen.
 -->
+
 ---
 transition: fade-out
 title: 模块示例
 ---
-
 
 <div> 
 esm
@@ -126,14 +127,18 @@ module.exports = someValue
 ---
 title: umd
 ---
+
 <div>
 umd
 
 ```ts 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
+    // amd 规范
+    console.log('是AMD模块规范，如require.js')
     define([], factory);
   } else if (typeof module === 'object' && module.exports) {
+    console.log('是commonjs模块规范，nodejs环境')
     module.exports = factory();
   } else {
     root.mathLibrary = factory();
@@ -152,6 +157,13 @@ umd
 ```
 
 </div>
+
+<!--
+dsadasdsdasdas
+
+你好
+-->
+
 ---
 
 ## 为什么需要 Bundler
@@ -228,24 +240,31 @@ function updateUser(id: number, update: User) {
 </style>
 
 ---
+title: Compile(编译)  
+---
+#  Compile(编译) 
 
-# Components
+ 
+1. *Parsing*(解析)是指将 原始代码 转换成 更加抽象的 ast 代码
+
+- 词法分析(Lexical Analysis)
+
+- 语法分析(Syntactic Analysis)  
+ 
+2. *Transformation*(转换) 对 ast 进行操作, 想编译成什么都可以操作 例如 ts -> js 
+ 
+3. *Code Generation*(代码生成)  将转换后的 ast 在换成 新代码 
+
+
 
 
 <div>
 
-You can use Vue components directly inside your slides.
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
 
 <!-- ./components/Counter.vue -->
 <Counter :count="10" m="t-4" />
 
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
 
 </div>
 
@@ -289,8 +308,7 @@ theme: seriph
 
 </div>
 
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
+
 
 ---
 preload: false
@@ -368,10 +386,9 @@ const final = {
 
 </div>
 
+<!--
 
-
-
-
+-->
 
 ---
 
