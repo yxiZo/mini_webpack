@@ -1,5 +1,6 @@
 const fs = require('fs')
 
+const path = require('path')
 // babel parse 生成 ast
 const parser = require('@babel/parser')
 // 遍历
@@ -32,8 +33,34 @@ function createAsset(filename){
     }
 }
 
+const createGraph = (entry) => {
+
+    const mainAsset = createAsset(entry)
+
+    const queue = [mainAsset]
 
 
-const mainAsset = createAsset('./example/entry.js')
+    for(const asset of queue){
+        
+        asset.mapping = {}
 
-console.log(mainAsset)
+        const dirname = path.dirname(asset.filename)
+
+        asset.depends.forEach((relativePath) => {
+            const absolutePath = path.join(dirname, relativePath)
+
+            const child = createAsset(absolutePath)
+
+            asset.mapping[relativePath] = child.id
+
+            queue.push(child)
+        })
+    }
+
+    return queue
+}
+
+const graph = createGraph('./example/entry.js')
+
+
+console.log(graph)
