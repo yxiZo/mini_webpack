@@ -4,7 +4,8 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export",
+    "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "@slidev/cli": "^0.42.11",
@@ -15,6 +16,8 @@
     "node": "14.21.3"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.22.14"
+    "@babel/preset-env": "^7.22.14",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }

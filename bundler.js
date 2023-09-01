@@ -49,7 +49,7 @@ const createGraph = function(entry) {
     // 使用一个队列来 遍历
     const queue = [mainAsset]
 
-
+    
     for(const asset of queue){
 
         asset.mapping = {}
@@ -71,7 +71,7 @@ const createGraph = function(entry) {
     return queue
 }
 
-const graph = createGraph('./example/entry.js')
+const graph = createGraph('./src/entry.js')
 
 const bundle = (graph) => {
     // 打包生成 bundle (可以运行的产物)
